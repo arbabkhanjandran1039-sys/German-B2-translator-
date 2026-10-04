@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 German Translator PRO - By Arbab</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:12px;display:flex;justify-content:center}
+.container{width:100%;max-width:480px}
+.top{text-align:center;color:white;padding:18px 0}
+.top h1{font-size:26px;font-weight:800}
+.card{background:white;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.25);overflow:hidden}
+.tabs{display:flex;background:#f5f3ff;padding:8px;gap:8px}
+.tab{flex:1;padding:12px 6px;border:none;border-radius:14px;font-size:13px;font-weight:700;cursor:pointer;background:transparent;color:#6b7280}
+.tab.active{background:#111827;color:white}
+.input-section{padding:18px}
+.label{font-size:11px;font-weight:800;color:#9ca3af;margin-bottom:8px;display:flex;justify-content:space-between}
+textarea{width:100%;min-height:120px;border:2px solid #f3f4f6;background:#fafafa;border-radius:16px;padding:16px;font-size:16px;resize:none;outline:none}
+textarea:focus{border-color:#667eea;background:white}
+.actions{display:flex;gap:10px;margin-top:14px}
+.btn{flex:1;padding:15px;border:none;border-radius:14px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:#111827;color:white}.btn-ghost{background:#f3f4f6;color:#374151}
+.output-wrap{background:#f9fafb;border-top:1px solid #f3f4f6;padding:18px}
+.output-box{background:white;border:2px solid #e5e7eb;border-radius:16px;min-height:120px;padding:16px;font-size:18px;line-height:1.6}
+.output-box.empty{color:#9ca3af;font-size:15px}
+.output-tools{display:flex;gap:8px;margin-top:12px}
+.small{padding:10px 14px;border-radius:10px;border:1px solid #e5e7eb;background:white;font-size:13px;font-weight:600;cursor:pointer}
+.loader{display:none;text-align:center;padding:12px;color:#667eea;font-weight:600;font-size:13px}
+.footer{text-align:center;padding:16px;color:rgba(255,255,255,0.85);font-size:11px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{background:#eef2ff;color:#4338ca;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:600;border:none;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="top"><h1>🇩🇪 B2 Translator</h1><p>By Arbab Khan • Professional German B2 Tool</p></div>
+<div class="card">
+<div class="tabs">
+<button class="tab active" id="t-en" onclick="setLang('en')">🇬🇧 English</button>
+<button class="tab" id="t-ur" onclick="setLang('ur')">🇵🇰 اردو</button>
+<button class="tab" id="t-hi" onclick="setLang('hi')">🇮🇳 हिंदी</button>
+</div>
+<div class="input-section">
+<div class="label"><span id="inLabel">ENGLISH INPUT</span><span id="count">0 / 500</span></div>
+<textarea id="input" placeholder="Type English here... e.g. I am looking for a job in Germany" maxlength="500" oninput="updateCount()"></textarea>
+<div class="chips">
+<button class="chip" onclick="fill('How are you?')">How are you?</button>
+<button class="chip" onclick="fill('I want to learn German B2')">Learn B2</button>
+<button class="chip" onclick="fill('Where is supermarket?')">Supermarket</button>
+</div>
+<div class="actions">
+<button class="btn btn-ghost" onclick="clearAll()">🔄 Clear</button>
+<button class="btn btn-primary" onclick="translate()">🇩🇪 Translate</button>
+</div>
+</div>
+<div class="output-wrap">
+<div class="label"><span>🇩🇪 B2 GERMAN OUTPUT</span><span style="color:#10b981">● B2 Level</span></div>
+<div class="output-box empty" id="output">German translation will appear here...</div>
+<div class="loader" id="loader">⏳ Translating to perfect B2 German...</div>
+<div class="output-tools">
+<button class="small" onclick="copyOut()">📋 Copy</button>
+<button class="small" onclick="speakOut()">🔊 Speak</button>
+<button class="small" onclick="shareOut()">📤 Share</button>
+</div>
+</div>
+</div>
+<div class="footer">Made with ❤️ by Arbab Khan<br>Gujranwala → Germany 🇩🇪 2026</div>
+</div>
+<script>
+let lang='en';
+const placeholders={en:'Type English here... e.g. I am looking for a job in Germany',ur:'یہاں اردو میں لکھیں... مثلاً میں جرمنی میں نوکری ڈھونڈ رہا ہوں',hi:'यहाँ हिंदी में लिखें...'};
+const labels={en:'ENGLISH INPUT',ur:'اردو ان پٹ',hi:'हिंदी इनपुट'};
+function setLang(l){lang=l; document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); document.getElementById('t-'+l).classList.add('active'); document.getElementById('input').placeholder=placeholders[l]; document.getElementById('inLabel').innerText=labels[l]; document.getElementById('input').style.direction=l==='ur'?'rtl':'ltr';}
+function updateCount(){document.getElementById('count').innerText=document.getElementById('input').value.length+' / 500';}
+function fill(t){document.getElementById('input').value=t; updateCount();}
+function clearAll(){document.getElementById('input').value=''; document.getElementById('output').innerText='German translation will appear here...'; document.getElementById('output').classList.add('empty'); updateCount();}
+async function translate(){
+ const txt=document.getElementById('input').value.trim(); if(!txt){alert('Please type something!'); return;}
+ const out=document.getElementById('output'); const loader=document.getElementById('loader'); loader.style.display='block'; out.innerText='';
+ try{const pair=lang==='ur'?'ur|de':lang==='hi'?'hi|de':'en|de'; const res=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(txt)}&langpair=${pair}`); const data=await res.json(); let german=data.responseData.translatedText; out.classList.remove('empty'); out.innerText=german;}catch(e){out.innerText='⚠️ Internet issue. Try again.';} loader.style.display='none';
+}
+function copyOut(){const t=document.getElementById('output').innerText; if(!t.includes('will appear')){navigator.clipboard.writeText(t); alert('Copied! ✅');}}
+function speakOut(){const t=document.getElementById('output').innerText; if(!t.includes('will appear')){let u=new SpeechSynthesisUtterance(t); u.lang='de-DE'; u.rate=0.9; speechSynthesis.speak(u);}}
+function shareOut(){const t=document.getElementById('output').innerText; if(navigator.share) navigator.share({title:'B2 German',text:t}); else copyOut();}
+</script>
+</body>
+</html>
