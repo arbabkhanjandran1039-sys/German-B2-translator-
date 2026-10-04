@@ -1,16 +1,17 @@
 {
   "name": "B2 German AI - Arbab Khan Jandran",
-  "short_name": "B2 German AI",
-  "description": "German B2 Translator by Arbab Khan Jandran - Gujranwala to Germany",
-  "start_url": "/German-B2-translator-/",
+  "short_name": "B2 German",
+  "description": "German B2 Translator by Arbab Khan Jandran - Gujranwala to Germany 2026",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/3873/3873999.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/5968/5968350.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
