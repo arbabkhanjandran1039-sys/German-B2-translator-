@@ -107,6 +107,12 @@ async function handleSend(){
   messages.innerHTML+=html;chatArea.scrollTop=chatArea.scrollHeight;
 }
 document.getElementById('inp').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();handleSend();}});
+<link rel="manifest" href="manifest.json">
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
 </script>
 </body>
 </html>
