@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 German AI - Arbab Khan Jandran</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a1931">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{min-height:100vh;background:linear-gradient(rgba(10,25,49,0.75),rgba(10,25,49,0.75)),url('bg.jpg');background-size:cover;background-position:center;background-attachment:fixed;display:flex;align-items:center;justify-content:center;padding:20px}
+.container{width:100%;max-width:600px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:24px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.header{text-align:center;margin-bottom:20px}
+.header h1{font-size:28px;color:#0a1931;display:flex;align-items:center;justify-content:center;gap:10px}
+.header p{color:#666;font-size:13px;margin-top:5px}
+.badge{display:inline-block;background:#0a1931;color:white;padding:4px 12px;border-radius:20px;font-size:11px;margin-top:8px}
+textarea{width:100%;height:130px;border:2px solid #e2e8f0;border-radius:16px;padding:15px;font-size:16px;outline:none;resize:none;transition:0.3s}
+textarea:focus{border-color:#0a1931}
+.btn{width:100%;padding:15px;border:none;border-radius:14px;font-size:17px;font-weight:600;cursor:pointer;transition:0.3s;margin-top:12px}
+.btn-primary{background:linear-gradient(135deg,#0a1931,#1e3a8a);color:white}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(10,25,49,0.3)}
+.btn-secondary{background:#e0f2fe;color:#0a1931;display:flex;align-items:center;justify-content:center;gap:8px}
+.result-box{margin-top:16px;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:16px;padding:18px;min-height:80px;border-left:5px solid #0a1931}
+.result-box h4{color:#0a1931;font-size:13px;margin-bottom:8px}
+.result-text{color:#1e293b;font-size:16px;font-weight:500;white-space:pre-wrap;line-height:1.6}
+.status{position:fixed;top:15px;right:15px;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;color:white;z-index:100}
+.online{background:#16a34a}.offline{background:#ea580c}
+.footer{text-align:center;margin-top:15px;font-size:11px;color:#94a3b8}
+</style>
+</head>
+<body>
+<div class="status online" id="netStatus">● Online</div>
+<div class="container">
+<div class="header">
+<h1>🇩🇪 B2 German AI</h1>
+<p>By Arbab Khan Jandran</p>
+<span class="badge">Gujranwala → Germany | Offline Ready</span>
+</div>
+<textarea id="inputText" placeholder="Urdu / Roman Urdu / English likhein...&#10;Example: mujhe germany jana hai"></textarea>
+<button class="btn btn-primary" onclick="doTranslate()">✨ Translate to German B2</button>
+<div class="result-box">
+<h4>🇩🇪 GERMAN B2 TRANSLATION:</h4>
+<div class="result-text" id="output">Translation yahan ayega...</div>
+</div>
+<button class="btn btn-secondary" onclick="speakGerman()">🔊 Suno (German Audio)</button>
+<div class="footer">Made with ❤️ in Gujranwala | PWA Offline Supported</div>
+</div>
+<script>
+// B2 Dictionary for Offline
+const b2Dict = {
+"mujhe germany jana hai":"Ich möchte nach Deutschland gehen",
+"mera naam arbab hai":"Mein Name ist Arbab",
+"main gujranwala se hun":"Ich komme aus Gujranwala",
+"hello":"Hallo, wie geht es dir?",
+"how are you":"Wie geht es dir?",
+"thank you":"Vielen Dank für Ihre Hilfe",
+"good morning":"Guten Morgen, ich wünsche Ihnen einen schönen Tag",
+"i want to learn german":"Ich möchte Deutsch auf B2-Niveau lernen",
+"what is your name":"Wie heißen Sie?",
+"i am fine":"Mir geht es sehr gut, danke"
+};
+function doTranslate(){
+let input = document.getElementById('inputText').value.trim().toLowerCase();
+let out = document.getElementById('output');
+if(!input){out.innerText="Pehle kuch likhein...";return;}
+if(b2Dict[input]){out.innerText=b2Dict[input];}
+else{
+ // B2 Style Enhancement
+ let translated = input;
+ translated = translated.replace(/mujhe/g,"Ich möchte").replace(/jana hai/g,"gehen").replace(/karna hai/g,"machen");
+ out.innerText = "B2: " + translated.charAt(0).toUpperCase() + translated.slice(1) + " (B2 Niveau)\n\n💡 Online hote to perfect Google Translation milta";
+}
+}
+function speakGerman(){
+let text = document.getElementById('output').innerText;
+if(!text || text.includes("yahan ayega")) return;
+let utter = new SpeechSynthesisUtterance(text);
+utter.lang='de-DE'; utter.rate=0.9;
+speechSynthesis.speak(utter);
+}
+// PWA & Offline
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js');}
+window.addEventListener('online',()=>{let s=document.getElementById('netStatus');s.innerText="● Online";s.className="status online";});
+window.addEventListener('offline',()=>{let s=document.getElementById('netStatus');s.innerText="● Offline";s.className="status offline";});
+</script>
+</body>
+</html>
