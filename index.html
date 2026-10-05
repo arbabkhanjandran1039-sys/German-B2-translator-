@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B2 German AI - Arbab Khan Jandran</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;height:100dvh;overflow:hidden;background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.55)),url('bg.jpg');background-size:cover;background-position:center;display:flex;width:100%}
+.side{width:260px;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);padding:12px;display:flex;flex-direction:column;border-right:1px solid #e2e8f0;z-index:10}
+.logo{font-weight:800;color:#0f172a;background:#f1f5f9;border-radius:14px;padding:12px;font-size:14px}
+.new{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-radius:12px;padding:12px;margin-top:10px;display:flex;justify-content:space-between;font-weight:600;font-size:13px;cursor:pointer}
+.app{flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.head{height:60px;background:rgba(255,255,255,.90);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid rgba(0,0,0,.08);flex-shrink:0}
+.main{flex:1;overflow-y:auto;padding:20px 0 120px 0;display:flex;flex-direction:column}
+.inner{max-width:700px;margin:0 auto;width:100%;padding:0 14px;flex:1}
+.wel h1{font-size:28px;font-weight:800;color:#2563eb !important;display:flex;gap:10px;align-items:center;text-shadow:0 2px 10px rgba(37,99,235,0.3)}
+.wel p{font-size:13px;color:#e2e8f0;margin-top:6px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.card{border:1px solid #e2e8f0;border-radius:14px;background:#fff;padding:12px 14px;cursor:pointer;transition:0.2s;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.card:active{transform:scale(0.97)}
+.card b{font-size:12px;color:#0f172a}
+.card span{font-size:12px;color:#475569;display:block;margin-top:2px}
+.msg{padding:16px 14px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:12px;background:rgba(255,255,255,0.88);margin:8px 0;border-radius:12px}
+.av{width:28px;height:28px;border-radius:50%;background:#0f172a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.ct{font-size:14px;line-height:1.6;white-space:pre-wrap}
+.ebox{margin-top:8px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px}
+.sbtn{margin-top:8px;border:1px solid #e2e8f0;background:#fff;border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer;margin-right:6px}
+
+/* CHAT BOX FIXED AT BOTTOM */
+.bottom-bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);padding:12px 14px 18px;backdrop-filter:blur(8px)}
+.bottom-inner{max-width:700px;margin:0 auto}
+.box{background:#fff;border-radius:22px;padding:10px 10px 10px 14px;border:1px solid #e2e8f0;box-shadow:0 10px 30px rgba(0,0,0,0.2);display:flex;flex-direction:column;gap:6px}
+.box-top{display:flex;justify-content:space-between;align-items:center;padding:2px 4px}
+.box-top span{font-size:12px;font-weight:700;color:#0f172a}
+.inp{display:flex;gap:8px;align-items:center}
+.inp textarea{flex:1;border:none;outline:none;resize:none;height:24px;font-family:Inter;font-size:14px;background:transparent}
+.lb{width:30px;height:30px;border-radius:50%;border:1px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;background:#fff;flex-shrink:0}
+.lb.on{background:#0f172a;color:#fff;border-color:#0f172a}
+.send{width:36px;height:36px;border-radius:50%;border:none;background:#0f172a;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;flex-shrink:0}
+.foot{text-align:center;font-size:10px;color:rgba(255,255,255,0.7);margin-top:8px}
+@media(max-width:900px){.side{position:fixed;left:-280px;top:0;bottom:0;transition:.3s}.side.open{left:0}.wel h1{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="side" id="side">
+<div style="display:flex;justify-content:space-between;align-items:center"><div class="logo">🇩🇪 B2 German Translator</div><span onclick="document.getElementById('side').classList.toggle('open')" style="cursor:pointer">✕</span></div>
+<div class="new" onclick="location.reload()"><span>✨ New Chat</span><span>📝</span></div>
+<div style="margin-top:14px;padding:10px;border-radius:10px;background:rgba(15,23,42,.06);font-size:12px;font-weight:600">🇩🇪 B2-German Translator</div>
+<div style="font-size:11px;margin-top:10px;color:#64748b">DEVELOPED BY</div>
+<div style="font-size:12px;font-weight:600;margin-top:4px">Arbab Khan Jandran<br>Gujranwala → Germany 🇩🇪<br>B2 German © 2026</div>
+</div>
+
+<div class="app">
+<div class="head">
+<div style="display:flex;align-items:center;gap:10px"><span onclick="document.getElementById('side').classList.toggle('open')" style="font-size:20px;cursor:pointer">☰</span><b>B2 German AI</b><span style="font-size:10px;color:#64748b">BY Arbab Khan</span></div>
+<div style="background:#f1f2f4;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600">DE</div>
+</div>
+
+<div class="main" id="main">
+<div class="inner">
+<div class="wel" id="wel">
+<h1>What can I help you with?</h1>
+<p>🇩🇪 English, Roman Urdu, اردو → Natural B2 German</p>
+<div class="grid">
+<div class="card" onclick="doFunction('translate')"><b>Translate to German</b><span>Main Lahore se hun</span></div>
+<div class="card" onclick="doFunction('intro')"><b>My Introduction</b><span>Arbab Khan Jandran</span></div>
+<div class="card" onclick="doFunction('urdu')"><b>اردو سے جرمن</b><span>میں جرمنی جانا چاہتا ہوں</span></div>
+<div class="card" onclick="doFunction('grammar')"><b>Check Grammar</b><span>Ich komme aus Gujranwala</span></div>
+</div>
+</div>
+<div id="chat"></div>
+</div>
+</div>
+
+<!-- FIXED AT BOTTOM END -->
+<div class="bottom-bar">
+<div class="bottom-inner">
+<div class="box">
+<div class="box-top"><span>Ask B2 German AI</span><span style="font-size:10px;background:#0f172a;color:#fff;padding:3px 9px;border-radius:10px">Auto</span></div>
+<div class="inp">
+<button class="lb on" id="l-auto">🌐</button>
+<button class="lb" id="l-en">🇬🇧</button>
+<button class="lb" id="l-ur">🇵🇰</button>
+<button class="lb" id="l-de">🇩🇪</button>
+<textarea id="inp" placeholder="Message B2 German AI..." oninput="this.style.height='24px';this.style.height=this.scrollHeight+'px'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendDirect()}"></textarea>
+<button class="send" onclick="sendDirect()">↑</button>
+</div>
+</div>
+<div class="foot">Built with ❤️ by Arbab Khan Jandran • Gujranwala → Germany</div>
+</div>
+</div>
+
+</div>
+
+<script>
+async function toDe(txt){
+try{let r=await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=de&dt=t&q=${encodeURIComponent(txt)}`);let d=await r.json();return d[0].map(x=>x[0]).join('');}catch(e){return null;}
+}
+
+function addMsg(user, german){
+let chat=document.getElementById('chat');
+document.getElementById('wel').style.display='none';
+chat.innerHTML+=`<div class="msg"><div class="av">You</div><div class="ct">${user}</div></div>`;
+let id='a'+Date.now();
+chat.innerHTML+=`<div class="msg" id="${id}"><div class="av" style="background:#fff;border:1px solid #e2e8f0">🇩🇪</div><div class="ct"><div style="color:#2563eb;font-weight:600">🇩🇪 B2: ${german}</div><div class="ebox"><span style="font-size:12px;color:#64748b">${user}</span><br><button class="sbtn" onclick="navigator.clipboard.writeText('${german.replace(/'/g,"\\'")}')">📋 Copy</button><button class="sbtn" onclick="let u=new SpeechSynthesisUtterance('${german.replace(/'/g,"\\'")}');u.lang='de-DE';speechSynthesis.speak(u)">🔊 Speak</button></div></div></div>`;
+document.getElementById('main').scrollTop=document.getElementById('main').scrollHeight;
+}
+
+async function doFunction(type){
+if(type==='translate'){
+let t="Main Lahore se hun";
+let g=await toDe(t);
+addMsg(t, g || "Ich komme aus Lahore. Ich lebe dort seit meiner Kindheit und möchte nun nach Deutschland gehen.");
+}
+if(type==='intro'){
+addMsg("My Introduction - Arbab Khan Jandran", "Mein Name ist Arbab Khan Jandran. Ich komme aus Gujranwala, Pakistan. Ich lerne Deutsch auf B2-Niveau, weil ich in Deutschland studieren und meine Zukunft aufbauen möchte. Ich bin sehr motiviert und fleißig.");
+}
+if(type==='urdu'){
+let t="میں جرمنی جانا چاہتا ہوں";
+let g=await toDe(t);
+addMsg(t, g || "Ich möchte nach Deutschland gehen, um dort zu studieren und eine Ausbildung zu machen.");
+}
+if(type==='grammar'){
+addMsg("Check Grammar: Ich komme aus Gujranwala", "✅ Korrektur: 'Ich komme aus Gujranwala.'\n\n📚 Erklärung:\n- 'Ich komme aus...' ist korrekt für Herkunft (Dativ)\n- 'Gujranwala' ist ein Eigenname, groß geschrieben\n- Punkt am Ende nicht vergessen!\n\n💯 B2 Bewertung: Perfekt! Dieser Satz ist grammatisch korrekt auf B2-Niveau.");
+}
+}
+
+async function sendDirect(){
+let inp=document.getElementById('inp');
+let msg=inp.value.trim();
+if(!msg) return;
+let tempMsg=msg;
+inp.value='';
+let chat=document.getElementById('chat');
+document.getElementById('wel').style.display='none';
+chat.innerHTML+=`<div class="msg"><div class="av">You</div><div class="ct">${tempMsg}</div></div>`;
+let id='a'+Date.now();
+chat.innerHTML+=`<div class="msg" id="${id}"><div class="av">🤖</div><div class="ct" style="color:#64748b">Translating to B2 German...</div></div>`;
+document.getElementById('main').scrollTop=document.getElementById('main').scrollHeight;
+let g=await toDe(tempMsg);
+document.getElementById(id).innerHTML=`<div class="av" style="background:#fff;border:1px solid #e2e8f0">🇩🇪</div><div class="ct"><div style="color:#2563eb;font-weight:600">🇩🇪 B2: ${g || tempMsg}</div><div class="ebox"><button class="sbtn" onclick="navigator.clipboard.writeText('${(g||tempMsg).replace(/'/g,"\\'")}')">📋 Copy</button><button class="sbtn" onclick="let u=new SpeechSynthesisUtterance('${(g||'').replace(/'/g,"\\'")}');u.lang='de-DE';speechSynthesis.speak(u)">🔊 Speak</button></div></div></div>`;
+}
+
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js');}
+</script>
+</body>
+</html>
