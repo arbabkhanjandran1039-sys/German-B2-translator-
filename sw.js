@@ -1,4 +1,26 @@
-const CACHE = "b2-offline-v3";
-const FILES = ["./","./index.html","./bg.jpg","./manifest.json"];
-self.addEventListener("install", e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)))});
-self.addEventListener("fetch", e=>{e.respondWith(caches.match(e.request).then(r=>r || fetch(e.request).catch(()=>caches.match("./index.html"))))});
+const CACHE_NAME = "qila-app-v1";
+const urlsToCache = [
+  "./",
+  "./index.html",
+  "./bg.jpg",
+  "./manifest.json"
+];
+
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(urlsToCache);
+    })
+  );
+});
+
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  );
+});
