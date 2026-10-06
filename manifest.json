@@ -1,0 +1,22 @@
+{
+  "name": "B2 German AI - Arbab Khan Jandran",
+  "short_name": "B2 German",
+  "description": "English, Roman Urdu, Urdu to German B2 Translator",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "bg.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "bg.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
